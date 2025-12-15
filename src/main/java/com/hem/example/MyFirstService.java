@@ -1,5 +1,6 @@
 package com.hem.example;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +9,12 @@ import com.hem.example.Test.MyFirstClass;
 @Service
 public class MyFirstService {
 
-  private final MyFirstClass myFirstClass;
-  // auto wired will be done by spring framework inf 
-  // constructor has params of beans class
-  public MyFirstService(MyFirstClass myFirstClass){
-    this.myFirstClass = myFirstClass;
-  }
+  // field injection is not recommended
+  @Autowired 
+  // should not be final
+  @Qualifier("bean1") // access function name as qualifier
+  private MyFirstClass myFirstClass;
+
 
   public String tellAStory(){
     return "The dependency is saying : " + myFirstClass.sayHello();

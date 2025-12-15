@@ -10,7 +10,7 @@ import com.hem.example.Test.MyFirstClass;
 @Configuration
 public class ApplicationConfig {
   
-	@Bean //("myFirstClass") also can user function name
+	@Bean("bean1") //("myFirstClass") also can user function name
 	public MyFirstClass myFirstBen(){
 		return new MyFirstClass("Frist bean");
   }
@@ -21,7 +21,7 @@ public class ApplicationConfig {
   }
 
 	@Bean //("myFirstClass") also can user function name
-	@Primary
+	// @Primary
 	public MyFirstClass myThirdBen(){
 		return new MyFirstClass("Third bean");
   }
