@@ -10,19 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ExampleApplication {
 
 	public static void main(String[] args) {
-		var app = new SpringApplication(ExampleApplication.class);
-		app.setDefaultProperties(Collections.singletonMap("spring.profiles.active", "dev"));
-		var context = app.run();
-
-		// can user bean name or function name as name param
-		MyFirstService first = context.getBean(MyFirstService.class);
-		System.out.println(first.tellAStory());
-		System.out.println(first.getCustomPropertyFormAnotherFile());
-		System.out.println(first.getCustomPropertyFormAnotherFile2());
-		System.out.println(first.getCustomProperties());
-		System.out.println(first.getCustomPropertiesInt());
-
+	 	SpringApplication.run(ExampleApplication.class);
 	}
-
-
 }
