@@ -1,13 +1,34 @@
-# add this in application.properties
+package com.hem.example;
 
-spring.profiles.active=dev
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
-# multiple profiles properties active. in any order
+import com.hem.example.Test.MyFirstClass;
 
-spring.profiles.active=dev,test,custom //
+@Configuration
+@Profile("dev")
+public class ApplicationConfig {
 
-# also can be defined in root class
+    @Bean("bean1") //("myFirstClass") also can user function name
+    // @Profile("prod")
+    public MyFirstClass myFirstBen(){
+    	return new MyFirstClass("Frist bean");
 
-var app = new SpringApplication(ExampleApplication.class);
-app.setDefaultProperties(Collections.singletonMap("spring.profile.active", "dev"));
-var context = app.run();
+}
+@Bean //("myFirstClass") also can user function name
+// @Profile("dev")
+public MyFirstClass mySecondBen(){
+return new MyFirstClass("Second bean");
+}
+
+    @Bean //("myFirstClass") also can user function name
+    // @Primary
+    public MyFirstClass myThirdBen(){
+    	return new MyFirstClass("Third bean");
+
+}
+
+}
