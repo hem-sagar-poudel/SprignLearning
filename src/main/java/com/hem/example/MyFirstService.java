@@ -2,53 +2,65 @@ package com.hem.example;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.stereotype.Service;
 
 import com.hem.example.Test.MyFirstClass;
 
 @Service
+// @PropertySource("classpath:custom.properties") // for adding single custom properties file
+@PropertySources({
+  @PropertySource("classpath:custom.properties"),
+  @PropertySource("classpath:custom-file-2.properties")
+})
 public class MyFirstService {
 
-  private MyFirstClass myFirstClass;
-  private Environment environment;
+  private final MyFirstClass myFirstClass;
 
- 
+  // @Value("Hello learning application")
+  // private String customProperties;
 
- 
+  @Value("${my.prop}")
+  private String customPropertyFormAnotherFile;
+
+   @Value("${my.prop.2}")
+  private String customPropertyFormAnotherFile2;
+
+  // @Value("123")
+  // private Integer customPropertyInt;
 
 
+  @Value("${my.custom.properties}")
+  private String customProperties;
 
+    @Value("${my.custom.properties.int}")
+  private String customPropertiesInt;
 
-   // setter injection
-  @Autowired
- // @Qualifier("bean1") can be here also
-  public void setMyFirstClass( @Qualifier("bean1") MyFirstClass myFirstClass){
+  //Constructor injection
+  public MyFirstService(@Qualifier("bean1") MyFirstClass myFirstClass){
     this.myFirstClass = myFirstClass;
   }
 
   public String tellAStory(){
     return "The dependency is saying : " + myFirstClass.sayHello();
   }
+
+  public String getCustomPropertyFormAnotherFile(){
+    return customPropertyFormAnotherFile;
+  }
+
+  public String getCustomPropertyFormAnotherFile2(){
+    return customPropertyFormAnotherFile2;
+  }
+
+  public String getCustomProperties(){
+    return customProperties;
+  }
+
+  public String getCustomPropertiesInt(){
+    return customPropertiesInt;
+  }
   
-
-
-
-  @Autowired
-  public void setEnvironment(Environment environment){
-    this.environment = environment;
-  }
-
-  public String getJavaVersion(){
-    return environment.getProperty("java.version");
-  }
-
-  public String getOsName(){
-    return environment.getProperty("os.name");
-  }
-
-  // accessed form application.properties
-  public String getProperties(){
-    return environment.getProperty("my.custom.properties");
-  }
 }

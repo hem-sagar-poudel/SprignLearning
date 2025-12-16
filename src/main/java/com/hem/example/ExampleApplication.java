@@ -13,9 +13,11 @@ public class ExampleApplication {
 		// can user bean name or function name as name param
 		MyFirstService first = context.getBean(MyFirstService.class);
 		System.out.println(first.tellAStory());
-		System.out.println(first.getJavaVersion());
-		System.out.println(first.getOsName());
-		System.out.println(first.getProperties());
+		System.out.println(first.getCustomPropertyFormAnotherFile());
+		System.out.println(first.getCustomPropertyFormAnotherFile2());
+		System.out.println(first.getCustomProperties());
+		System.out.println(first.getCustomPropertiesInt());
+
 	}
 
 
