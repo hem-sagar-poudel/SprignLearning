@@ -24,11 +24,15 @@ public class FirstController {
   }
 
   @PostMapping("/post-order")
+  // this is using POJOS // plane old java objects
   public String postOrder(@RequestBody Order order) {
       return "Request Accepted and order is " + order.toString(); // object order is converted to string
   }
 
   @PostMapping("/post-order-record")
+  // DTOS // Data Transfer objects // Java Records introduced in 14 and finalized in 16
+  // Record class is immutable // carry fixed set of values
+  // all fields are automatically final
   public String postOrderRecord(@RequestBody OrderRecord orderRecord) {
       return "Request Accepted and order is " + orderRecord.toString(); // object order is converted to string
   }
