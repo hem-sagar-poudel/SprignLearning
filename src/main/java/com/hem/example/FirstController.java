@@ -27,5 +27,10 @@ public class FirstController {
   public String postOrder(@RequestBody Order order) {
       return "Request Accepted and order is " + order.toString(); // object order is converted to string
   }
+
+  @PostMapping("/post-order-record")
+  public String postOrderRecord(@RequestBody OrderRecord orderRecord) {
+      return "Request Accepted and order is " + orderRecord.toString(); // object order is converted to string
+  }
   
 }
