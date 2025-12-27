@@ -2,6 +2,8 @@ package com.hem.example;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,12 +20,13 @@ public class School {
   @GeneratedValue
   private Integer id;
  
-  @Column(length = 20)
+  @Column(length = 50)
   private String name;
 
   //------------------------------------
 
   @OneToMany(mappedBy = "school")
+  @JsonManagedReference
   private List<Student> student;
 
  //------------------------------------
